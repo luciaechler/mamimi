@@ -23,3 +23,10 @@ return new Promise((resolve, reject)=>{
 				this._setDataActual(data);
 			}
 //yes
+if(Array.isArray(data)){
+			this.dispatch("data-processing", data);
+			
+			data.forEach((def, i) => {
+				if(def && typeof def === "object"){
+					var row = new Row(def, this);
+					this.rows.push(row);
